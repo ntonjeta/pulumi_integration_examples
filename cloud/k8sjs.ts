@@ -1,4 +1,3 @@
-// Copyright 2016-2019, Pulumi Corporation.  All rights reserved.
 
 import * as k8s from "@pulumi/kubernetes";
 import * as k8stypes from "@pulumi/kubernetes/types/input";
@@ -43,16 +42,13 @@ export class ServiceDeployment extends pulumi.ComponentResource {
             spec: {
                 ports: args.ports && args.ports.map(p => ({ port: p, targetPort: p })),
                 selector: this.deployment.spec.template.metadata.labels,
-                // Minikube does not implement services of type `LoadBalancer`; require the user to specify if we're
-                // running on minikube, and if so, create only services of type ClusterIP.
-                type: args.allocateIpAddress ? (args.isMinikube ? "ClusterIP" : "LoadBalancer") : undefined,
+                type: args.allocateIpAddress ? ( "LoadBalancer") : undefined,
             },
         }, { parent: this });
 
         if (args.allocateIpAddress) {
-            this.ipAddress = args.isMinikube ?
-                this.service.spec.clusterIP :
-                this.service.status.loadBalancer.ingress[0].ip;
+                this.ipAddress = this.service.status.loadBalancer.ingress[0].ip;
+                
         }
     }
 }
@@ -63,5 +59,4 @@ export interface ServiceDeploymentArgs {
     replicas?: number;
     ports?: number[];
     allocateIpAddress?: boolean;
-    isMinikube?: boolean;
 }

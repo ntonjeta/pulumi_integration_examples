@@ -1,5 +1,6 @@
 /.pulumi/
 /.vscode/
+/app/.vscode/
 /.vs/
 bin/
 build/

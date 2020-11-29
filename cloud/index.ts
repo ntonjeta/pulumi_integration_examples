@@ -1,5 +1,3 @@
-// Copyright 2016-2019, Pulumi Corporation.  All rights reserved.
-
 import * as pulumi from "@pulumi/pulumi";
 import * as k8sjs from "./k8sjs";
 
@@ -17,10 +15,11 @@ const redisReplica = new k8sjs.ServiceDeployment("redis-replica", {
 
 const frontend = new k8sjs.ServiceDeployment("frontend", {
     replicas: 3,
-    image: "pulumi/guestbook-php-redis",
-    ports: [80],
+    image: "tammy.azurecr.io/guestbook:latest",
+    ports: [3000],
     allocateIpAddress: true,
-    isMinikube: config.getBoolean("isMinikube"),
 });
 
 export let frontendIp = frontend.ipAddress;
+
+

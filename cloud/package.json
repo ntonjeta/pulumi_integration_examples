@@ -1,0 +1,20 @@
+{
+  "name": "guestbook-easy",
+  "version": "0.1.0",
+  "scripts": {
+    "start": "node index.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.0"
+  },
+  "dependencies": {
+    "@pulumi/kubernetes": "^2.0.0",
+    "@pulumi/pulumi": "^2.0.0",
+    "@types/shelljs": "^0.8.8",
+    "child_process": "^1.0.2",
+    "mocha": "^8.2.1",
+    "mocha-explorer-launcher-scripts": "^0.3.0",
+    "shelljs": "^0.8.4"
+  },
+  "license": "MIT"
+}
